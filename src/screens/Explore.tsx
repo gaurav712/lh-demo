@@ -1,9 +1,16 @@
 import React, {useContext} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {SidebarContext} from '../context/SidebarContext';
 import Logo from '../assets/icons/Logo';
 import SidebarIcon from '../assets/icons/SidebarIcon';
 import {NavigationContext} from '../context/NavigationContext';
+import ExploreIcon from '../assets/icons/ExploreIcon';
 
 const Explore = () => {
   const {openSidebar} = useContext(SidebarContext);
@@ -21,6 +28,17 @@ const Explore = () => {
         <TouchableOpacity style={styles.sidebarToggle} onPress={openSidebar}>
           <SidebarIcon />
         </TouchableOpacity>
+      </View>
+      <View style={styles.searchContainer}>
+        <View style={styles.searchIcon}>
+          <ExploreIcon tint="#7F7F7F" />
+        </View>
+        <TextInput
+          style={styles.searchInput}
+          numberOfLines={1}
+          placeholder="Search or paste a link"
+          placeholderTextColor={'#7F7F7F'}
+        />
       </View>
     </View>
   );
@@ -54,6 +72,28 @@ const styles = StyleSheet.create({
   sidebarToggle: {
     width: 40,
     aspectRatio: 1,
+  },
+  searchContainer: {
+    paddingHorizontal: 20,
+    marginTop: 5,
+  },
+  searchIcon: {
+    width: 16,
+    aspectRatio: 1,
+    position: 'absolute',
+    left: 30,
+    top: 12,
+  },
+  searchInput: {
+    width: '100%',
+    color: '#7F7F7F',
+    backgroundColor: '#7F7F7F33',
+    fontFamily: 'SF-Pro-Display-Regular',
+    borderRadius: 10,
+    fontSize: 16,
+    includeFontPadding: false,
+    padding: 10,
+    paddingLeft: 35,
   },
 });
 
