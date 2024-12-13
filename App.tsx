@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flex: 1,
+    backgroundColor: '#00000099',
     paddingTop: StatusBar.currentHeight,
   },
 });
