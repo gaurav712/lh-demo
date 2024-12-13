@@ -11,6 +11,7 @@ import BackgroundImage from './src/assets/images/bg.png';
 import BottomBar from './src/components/BottomBar';
 import Explore from './src/screens/Explore';
 import {NavigationContext} from './src/context/NavigationContext';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const App: () => React.JSX.Element = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -25,26 +26,29 @@ const App: () => React.JSX.Element = () => {
   };
 
   return (
-    <NavigationContext.Provider value={{activeScreenName, setActiveScreenName}}>
-      <SidebarContext.Provider
-        value={{isSidebarOpen, openSidebar, closeSidebar}}>
-        <ImageBackground
-          style={styles.container}
-          source={BackgroundImage}
-          blurRadius={90}>
-          <SafeAreaView style={styles.innerContainer}>
-            <StatusBar
-              barStyle={'light-content'}
-              backgroundColor="transparent"
-              translucent={true}
-            />
-            <Explore />
-          </SafeAreaView>
-          <BottomBar />
-          <Sidebar />
-        </ImageBackground>
-      </SidebarContext.Provider>
-    </NavigationContext.Provider>
+    <GestureHandlerRootView>
+      <NavigationContext.Provider
+        value={{activeScreenName, setActiveScreenName}}>
+        <SidebarContext.Provider
+          value={{isSidebarOpen, openSidebar, closeSidebar}}>
+          <ImageBackground
+            style={styles.container}
+            source={BackgroundImage}
+            blurRadius={90}>
+            <SafeAreaView style={styles.innerContainer}>
+              <StatusBar
+                barStyle={'light-content'}
+                backgroundColor="transparent"
+                translucent={true}
+              />
+              <Explore />
+            </SafeAreaView>
+            <BottomBar />
+            <Sidebar />
+          </ImageBackground>
+        </SidebarContext.Provider>
+      </NavigationContext.Provider>
+    </GestureHandlerRootView>
   );
 };
 

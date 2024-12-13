@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -11,6 +12,7 @@ import Logo from '../assets/icons/Logo';
 import SidebarIcon from '../assets/icons/SidebarIcon';
 import {NavigationContext} from '../context/NavigationContext';
 import ExploreIcon from '../assets/icons/ExploreIcon';
+import {FlatList} from 'react-native-gesture-handler';
 
 const Explore = () => {
   const {openSidebar} = useContext(SidebarContext);
@@ -40,6 +42,9 @@ const Explore = () => {
           placeholderTextColor={'#7F7F7F'}
         />
       </View>
+      <ScrollView style={styles.bottomContentContainer}>
+        <FlatList data={[]} renderItem={() => <></>} />
+      </ScrollView>
     </View>
   );
 };
@@ -76,6 +81,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     paddingHorizontal: 20,
     marginTop: 5,
+    marginBottom: 15,
   },
   searchIcon: {
     width: 16,
@@ -94,6 +100,13 @@ const styles = StyleSheet.create({
     includeFontPadding: false,
     padding: 10,
     paddingLeft: 35,
+  },
+  bottomContentContainer: {
+    backgroundColor: '#7F7F7F15',
+    borderWidth: 0.2,
+    borderColor: '#9C9C9C',
+    borderRadius: 15,
+    marginHorizontal: -0.2,
   },
 });
 
