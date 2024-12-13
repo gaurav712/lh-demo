@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     paddingHorizontal: 20,
-    marginTop: 5,
+    marginTop: 10,
     marginBottom: 15,
   },
   searchIcon: {
@@ -256,6 +256,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4242424D',
     alignSelf: 'flex-start',
     paddingHorizontal: 10,
+    paddingVertical: 3,
   },
   label: {
     textAlign: 'center',
@@ -273,6 +274,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4242424D',
     alignSelf: 'flex-start',
     paddingHorizontal: 10,
+    paddingVertical: 3,
   },
   eventInfoContainer: {
     overflow: 'hidden',
