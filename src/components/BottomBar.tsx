@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {BlurView} from '@react-native-community/blur';
 import HomeIcon from '../assets/icons/HomeIcon';
@@ -6,6 +6,7 @@ import PeopleIcon from '../assets/icons/PeopleIcon';
 import ExploreIcon from '../assets/icons/ExploreIcon';
 import NewPlanIcon from '../assets/icons/NewPlanIcon';
 import PlansIcon from '../assets/icons/PlansIcon';
+import {NavigationContext} from '../context/NavigationContext';
 
 interface IButton {
   Icon: ({tint}: {tint: string}) => React.JSX.Element;
@@ -15,13 +16,14 @@ interface IButton {
 const BUTTONS: Record<string, IButton> = {
   Home: {Icon: HomeIcon, label: 'Home'},
   People: {Icon: PeopleIcon, label: 'People'},
-  NewPlan: {Icon: NewPlanIcon, label: 'New Plan'},
+  ['New Plan']: {Icon: NewPlanIcon, label: 'New Plan'},
   Plans: {Icon: PlansIcon, label: 'Plans'},
   Explore: {Icon: ExploreIcon, label: 'Explore'},
 };
 
 const BottomBar = () => {
-  const [activeTab, setActiveTab] = useState<string>('Explore');
+  const {activeScreenName, setActiveScreenName} = useContext(NavigationContext);
+
   return (
     <View style={styles.rootContainer}>
       <BlurView style={styles.blurContainer}>
@@ -31,14 +33,14 @@ const BottomBar = () => {
             <TouchableOpacity
               key={item}
               style={styles.button}
-              onPress={() => setActiveTab(item)}>
+              onPress={() => setActiveScreenName(item)}>
               <View style={styles.iconContainer}>
-                <Icon tint={activeTab === item ? '#fff' : '#7F7F7F'} />
+                <Icon tint={activeScreenName === item ? '#fff' : '#7F7F7F'} />
               </View>
               <Text
                 style={[
                   styles.label,
-                  {color: activeTab === item ? '#fff' : '#7F7F7F'},
+                  {color: activeScreenName === item ? '#fff' : '#7F7F7F'},
                 ]}>
                 {BUTTONS[item].label}
               </Text>
