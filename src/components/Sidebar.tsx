@@ -110,49 +110,48 @@ const Sidebar = () => {
         <View style={styles.absoluteFill}>
           <TouchableWithoutFeedback>
             <View style={styles.sidebarContainer}>
-              <BlurView style={styles.blurContainer}>
-                <View style={styles.contentContainer}>
-                  <Text style={styles.header}>Filters</Text>
-                  <ScrollView showsVerticalScrollIndicator={false}>
-                    {Object.keys(groups).map(groupKey => (
-                      <View key={groupKey}>
-                        <TouchableOpacity
-                          style={styles.dropdownHeader}
-                          onPress={() => toggleGroup(groupKey)}>
-                          <Text style={styles.dropdownText}>
-                            {groupKey.replace(/([A-Z])/g, ' $1').trim()}
-                          </Text>
-                        </TouchableOpacity>
-                        {groups[groupKey] &&
-                          Object.keys(filters[groupKey]).map(filterKey => (
-                            <TouchableOpacity
-                              key={filterKey}
-                              style={styles.optionContainer}
-                              onPress={() => toggleFilter(groupKey, filterKey)}>
-                              <CheckBox
-                                label={filterKey
-                                  .replace(/([A-Z])/g, ' $1')
-                                  .trim()}
-                                value={filters[groupKey][filterKey]}
-                                onValueChange={() =>
-                                  toggleFilter(groupKey, filterKey)
-                                }
-                              />
-                            </TouchableOpacity>
-                          ))}
-                      </View>
-                    ))}
-                  </ScrollView>
-                  <View style={styles.footer}>
-                    <TouchableOpacity style={styles.applyButton}>
-                      <Text style={styles.applyText}>Apply</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.cancelButton}>
-                      <Text style={styles.cancelText}>Cancel</Text>
-                    </TouchableOpacity>
-                  </View>
+              <BlurView style={styles.blurContainer} />
+              <View style={styles.contentContainer}>
+                <Text style={styles.header}>Filters</Text>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                  {Object.keys(groups).map(groupKey => (
+                    <View key={groupKey}>
+                      <TouchableOpacity
+                        style={styles.dropdownHeader}
+                        onPress={() => toggleGroup(groupKey)}>
+                        <Text style={styles.dropdownText}>
+                          {groupKey.replace(/([A-Z])/g, ' $1').trim()}
+                        </Text>
+                      </TouchableOpacity>
+                      {groups[groupKey] &&
+                        Object.keys(filters[groupKey]).map(filterKey => (
+                          <TouchableOpacity
+                            key={filterKey}
+                            style={styles.optionContainer}
+                            onPress={() => toggleFilter(groupKey, filterKey)}>
+                            <CheckBox
+                              label={filterKey
+                                .replace(/([A-Z])/g, ' $1')
+                                .trim()}
+                              value={filters[groupKey][filterKey]}
+                              onValueChange={() =>
+                                toggleFilter(groupKey, filterKey)
+                              }
+                            />
+                          </TouchableOpacity>
+                        ))}
+                    </View>
+                  ))}
+                </ScrollView>
+                <View style={styles.footer}>
+                  <TouchableOpacity style={styles.applyButton}>
+                    <Text style={styles.applyText}>Apply</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.cancelButton}>
+                    <Text style={styles.cancelText}>Cancel</Text>
+                  </TouchableOpacity>
                 </View>
-              </BlurView>
+              </View>
             </View>
           </TouchableWithoutFeedback>
         </View>
@@ -177,7 +176,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   blurContainer: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   contentContainer: {
     flex: 1,

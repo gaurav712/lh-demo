@@ -26,7 +26,8 @@ const BottomBar = () => {
 
   return (
     <View style={styles.rootContainer}>
-      <BlurView style={styles.blurContainer}>
+      <BlurView style={styles.blurContainer} />
+      <View style={styles.container}>
         {Object.keys(BUTTONS).map(item => {
           const {Icon} = BUTTONS[item];
           return (
@@ -47,7 +48,7 @@ const BottomBar = () => {
             </TouchableOpacity>
           );
         })}
-      </BlurView>
+      </View>
     </View>
   );
 };
@@ -62,6 +63,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#25252525',
   },
   blurContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',

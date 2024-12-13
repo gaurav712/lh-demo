@@ -41,28 +41,25 @@ interface IProfile {
 const renderEvent = ({item}: {item: IEvent}) => (
   <ImageBackground source={{uri: item.cover}} style={styles.eventCard}>
     <View style={styles.topLabelContainer}>
-      <BlurView style={styles.topLabel}>
-        <View>
-          <Text style={styles.label}>{item.topLabel}</Text>
-        </View>
-      </BlurView>
+      <BlurView style={styles.blurContainer} />
+      <View style={styles.topLabel}>
+        <Text style={styles.label}>{item.topLabel}</Text>
+      </View>
     </View>
     <View style={styles.timeLabelContainer}>
-      <BlurView style={styles.timeLabel}>
-        <View>
-          <Text style={styles.label}>{`🗓️ ${item.time}`}</Text>
-        </View>
-      </BlurView>
+      <BlurView style={styles.blurContainer} />
+      <View style={styles.timeLabel}>
+        <Text style={styles.label}>{`🗓️ ${item.time}`}</Text>
+      </View>
     </View>
     <View style={styles.eventInfoContainer}>
-      <BlurView style={styles.blurContainer}>
-        <View>
-          <Text style={styles.eventTitle}>{item.title}</Text>
-        </View>
-        <View>
-          <Text style={styles.eventLocation}>{item.location}</Text>
-        </View>
-      </BlurView>
+      <BlurView style={styles.blurContainer} />
+      <View>
+        <Text style={styles.eventTitle}>{item.title}</Text>
+      </View>
+      <View>
+        <Text style={styles.eventLocation}>{item.location}</Text>
+      </View>
     </View>
   </ImageBackground>
 );
@@ -77,11 +74,10 @@ const renderProfile = ({item}: {item: IProfile}) => (
       <Text style={styles.profileName}>{item.name}</Text>
       <Text style={styles.profileLocation}>{item.location}</Text>
       <TouchableOpacity style={styles.addConnectionButton}>
-        <BlurView style={styles.addConnectionBlur}>
-          <View>
-            <Text style={styles.addConnection}>Add to Pending</Text>
-          </View>
-        </BlurView>
+        <BlurView style={styles.blurContainer} />
+        <View>
+          <Text style={styles.addConnection}>Add to Pending</Text>
+        </View>
       </TouchableOpacity>
     </View>
   </ImageBackground>
@@ -283,11 +279,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     left: 0,
+    paddingHorizontal: 10,
   },
   blurContainer: {
-    position: 'relative',
-    width: '100%',
-    paddingHorizontal: 10,
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
+    top: 0,
   },
   eventTitle: {
     maxWidth: '100%',
@@ -363,10 +362,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     overflow: 'hidden',
-  },
-  addConnectionBlur: {
     paddingVertical: 10,
-    backgroundColor: '#3D3D3D80',
   },
   addConnection: {
     textAlign: 'center',
