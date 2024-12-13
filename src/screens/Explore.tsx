@@ -16,6 +16,8 @@ import ExploreIcon from '../assets/icons/ExploreIcon';
 import {FlatList} from 'react-native-gesture-handler';
 import {eventRecommendations, nearYou} from '../constants/staticData';
 import {BlurView} from '@react-native-community/blur';
+import FilterIcon from '../assets/icons/FilterIcon';
+import HamburgerIcon from '../assets/icons/HamburgerIcon';
 
 interface IEvent {
   title: string;
@@ -101,6 +103,17 @@ const Explore = () => {
           <Text
             style={styles.count}>{` (${eventRecommendations.length})`}</Text>
         </Text>
+        <View style={styles.filter}>
+          <View style={styles.filterTextContainer}>
+            <View style={styles.filterIcon}>
+              <FilterIcon />
+            </View>
+            <Text style={styles.filterText}>Filter by your interest</Text>
+          </View>
+          <View style={styles.filterIcon}>
+            <HamburgerIcon />
+          </View>
+        </View>
         <FlatList
           style={styles.eventsList}
           data={eventRecommendations}
@@ -253,6 +266,27 @@ const styles = StyleSheet.create({
     fontSize: 16,
     includeFontPadding: false,
     marginBottom: 15,
+  },
+  filter: {
+    paddingHorizontal: 20,
+    marginBottom: 15,
+    marginTop: -10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  filterTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  filterIcon: {
+    width: 16,
+    aspectRatio: 1,
+  },
+  filterText: {
+    color: '#7F7F7F',
+    marginLeft: 5,
+    fontFamily: 'SF-Pro-Display-Regular',
   },
 });
 
