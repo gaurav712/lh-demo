@@ -40,21 +40,25 @@ export const connectionRecommendations = [
   {
     name: 'Ava Martinez',
     location: 'Upper West Side',
-    cover: 'ava-martinez.png',
+    cover:
+      'https://raw.githubusercontent.com/gaurav712/lh-demo/refs/heads/main/src/assets/images/ava-martinez.png',
   },
   {
     name: 'Emma Johnson',
     location: 'Upper West Side',
-    cover: 'emma-johnson.png',
+    cover:
+      'https://raw.githubusercontent.com/gaurav712/lh-demo/refs/heads/main/src/assets/images/emma-johnson.png',
   },
   {
     name: 'Claude Kuhic',
     location: 'Upper West Side',
-    cover: 'claude-kuhic.png',
+    cover:
+      'https://raw.githubusercontent.com/gaurav712/lh-demo/refs/heads/main/src/assets/images/claude-kuhic.png',
   },
   {
     name: 'William Blick',
     location: 'Upper West Side',
-    cover: 'william-blick.png',
+    cover:
+      'https://raw.githubusercontent.com/gaurav712/lh-demo/refs/heads/main/src/assets/images/william-blick.png',
   },
 ];

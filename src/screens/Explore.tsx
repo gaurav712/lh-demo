@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {
+  Image,
   ImageBackground,
   ScrollView,
   StyleSheet,
@@ -14,7 +15,11 @@ import SidebarIcon from '../assets/icons/SidebarIcon';
 import {NavigationContext} from '../context/NavigationContext';
 import ExploreIcon from '../assets/icons/ExploreIcon';
 import {FlatList} from 'react-native-gesture-handler';
-import {eventRecommendations, nearYou} from '../constants/staticData';
+import {
+  connectionRecommendations,
+  eventRecommendations,
+  nearYou,
+} from '../constants/staticData';
 import {BlurView} from '@react-native-community/blur';
 import FilterIcon from '../assets/icons/FilterIcon';
 import HamburgerIcon from '../assets/icons/HamburgerIcon';
@@ -24,6 +29,12 @@ interface IEvent {
   location: string;
   topLabel: string;
   time: string;
+  cover: string;
+}
+
+interface IProfile {
+  name: string;
+  location: string;
   cover: string;
 }
 
@@ -52,6 +63,26 @@ const renderEvent = ({item}: {item: IEvent}) => (
           <Text style={styles.eventLocation}>{item.location}</Text>
         </View>
       </BlurView>
+    </View>
+  </ImageBackground>
+);
+
+const renderProfile = ({item}: {item: IProfile}) => (
+  <ImageBackground
+    source={{uri: item.cover}}
+    style={styles.profileCard}
+    blurRadius={90}>
+    <View style={styles.profileContent}>
+      <Image style={styles.profileImage} source={{uri: item.cover}} />
+      <Text style={styles.profileName}>{item.name}</Text>
+      <Text style={styles.profileLocation}>{item.location}</Text>
+      <TouchableOpacity style={styles.addConnectionButton}>
+        <BlurView style={styles.addConnectionBlur}>
+          <View>
+            <Text style={styles.addConnection}>Add to Pending</Text>
+          </View>
+        </BlurView>
+      </TouchableOpacity>
     </View>
   </ImageBackground>
 );
@@ -118,6 +149,14 @@ const Explore = () => {
           style={styles.eventsList}
           data={eventRecommendations}
           renderItem={renderEvent}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+        <Text style={styles.sectionHeading}>Find new people</Text>
+        <FlatList
+          style={styles.eventsList}
+          data={connectionRecommendations}
+          renderItem={renderProfile}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         />
@@ -287,6 +326,53 @@ const styles = StyleSheet.create({
     color: '#7F7F7F',
     marginLeft: 5,
     fontFamily: 'SF-Pro-Display-Regular',
+  },
+  profileCard: {
+    width: 180,
+    aspectRatio: 161 / 173,
+    marginRight: 20,
+    borderRadius: 15,
+    overflow: 'hidden',
+    justifyContent: 'center',
+  },
+  profileContent: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  profileImage: {
+    width: 80,
+    aspectRatio: 1,
+    borderRadius: 40,
+  },
+  profileName: {
+    textAlign: 'center',
+    color: '#fff',
+    fontFamily: 'SF-Pro-Display-Semibold',
+    includeFontPadding: false,
+  },
+  profileLocation: {
+    textAlign: 'center',
+    color: '#C2C2C2',
+    fontFamily: 'SF-Pro-Display-Regular',
+    includeFontPadding: false,
+  },
+  addConnectionButton: {
+    width: '80%',
+    borderRadius: 30,
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  addConnectionBlur: {
+    paddingVertical: 10,
+    backgroundColor: '#3D3D3D80',
+  },
+  addConnection: {
+    textAlign: 'center',
+    color: '#fff',
+    fontFamily: 'SF-Pro-Display-Semibold',
+    includeFontPadding: false,
   },
 });
 
