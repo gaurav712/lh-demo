@@ -1,24 +1,21 @@
 import React from 'react';
-import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import CheckBoxIcon from '../assets/icons/CheckBoxIcon';
 import CheckBoxIconUnchecked from '../assets/icons/CheckBoxIconUnchecked';
 
 interface CheckBoxProps {
   label: string;
   value: boolean;
-  onValueChange: (newValue: boolean) => void;
 }
 
-const CheckBox: React.FC<CheckBoxProps> = ({label, value, onValueChange}) => {
+const CheckBox: React.FC<CheckBoxProps> = ({label, value}) => {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => onValueChange(!value)}>
+    <View style={styles.container}>
       <View style={styles.iconContainer}>
         {value ? <CheckBoxIcon /> : <CheckBoxIconUnchecked />}
       </View>
       <Text style={styles.label}>{label}</Text>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -33,7 +30,7 @@ const styles = StyleSheet.create({
   },
   label: {
     marginLeft: 10,
-    fontSize: 16,
+    fontSize: 15,
     color: '#fff',
     fontFamily: 'SF-Pro-Display-Regular',
   },
