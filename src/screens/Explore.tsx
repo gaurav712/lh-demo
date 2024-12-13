@@ -236,6 +236,7 @@ const styles = StyleSheet.create({
   },
   eventsList: {
     paddingHorizontal: 20,
+    marginBottom: 10,
   },
   eventCard: {
     width: 260,
